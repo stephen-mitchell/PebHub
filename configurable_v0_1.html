@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <title>Configurable</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+    <script type="text/javascript">
+      function getParams()
+      {
+        // Get the URL, decode special characters and strip the query string
+        var url = window.location.href;
+        url = decodeURIComponent(url);
+        url.match(/\#(.+)$/);
+        var params = RegExp.$1;
+        // Parameters are encoded as JSON. Parse them and populate form elements
+        var jsonParams = JSON.parse(params);
+        if (jsonParams.githubAccessToken !== undefined)
+        {
+          document.getElementById("githubAccessToken").value = jsonParams.githubAccessToken;
+        }
+      }
+    </script>
+  </head>
+  <body onload="getParams();">
+    <div data-role="page" id="main">
+      <div data-role="header" class="jqm-header">
+        <h1>PebbleHub Configuration</h1>
+      </div>
+    <div data-role="content">
+      <div data-role="fieldcontain">
+        <label for="githubAccessToken">GitHub Access Token:</label>
+        <p>Please log into your GitHub account in a web browser and navigate to the <a href=https://github.com/settings/applications">Settings/Navigation</a> page. Generate a new Personal Access Token with default scopes, then copy and paste the long hex code into the box below.</p>
+        <p>Although this access method is less convenient than providing your username and password and having an Access Token automatically generated, it is designed to be more secure since you don't need to provide your GitHub access credentials to a third party. Personal Access Tokens can be revoked at any time with far less disruption than changing your account password.</p>
+        <input type="text" name="githubAccessToken" id="githubAccessToken"></input>
+      </div>
+
+      <div class="ui-body ui-body-b">
+        <fieldset class="ui-grid-a">
+          <div class="ui-block-a"><button type="submit" data-theme="d" id="b-cancel">Cancel</button></div>
+          <div class="ui-block-b"><button type="submit" data-theme="a" id="b-submit">Submit</button></div>
+        </fieldset>
+      </div>
+    </div>
+    <script>
+      function saveOptions()
+      {
+        var options = {'githubAccessToken': $("#githubAccessToken").val()}
+        return options;
+      }
+      $().ready(function()
+      {
+        $("#b-cancel").click(function()
+        {
+          console.log("Cancel");
+          document.location = "pebblejs://close";
+        });
+        $("#b-submit").click(function(){
+          var location = "pebblejs://close#" + encodeURIComponent(JSON.stringify(saveOptions()));
+          document.location = location;
+        });
+      });
+    </script>
+  </body>
+</html>
