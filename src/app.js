@@ -3,7 +3,7 @@ var ajax = require('ajax');
 var Settings = require('settings');
 
 Settings.config(
-  {url: 'http://dl.dropboxusercontent.com/u/2167552/configurable.html'},
+  {url: 'http://stephen-mitchell.github.io/PebbleHub/configurable_v0_1.html'},
   function(e)
   {
     console.log('opening configurable');
@@ -110,7 +110,6 @@ function prepare_event_details(event)
         return {title:"Commit Comment",
                 body:body};
       case "CreateEvent":
-        console.log(JSON.stringify(event));
         if (event.payload.ref_type === 'repository')
           {
             return {title:"New Repository",
