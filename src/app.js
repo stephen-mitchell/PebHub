@@ -3,7 +3,7 @@ var ajax = require('ajax');
 var Settings = require('settings');
 
 Settings.config(
-  {url: 'http://stephen-mitchell.github.io/PebbleHub/configurable_v0_1.html'},
+  {url: 'http://stephen-mitchell.github.io/PebHub/configurable_v0_1.html'},
   function(e)
   {
     console.log('opening configurable');
