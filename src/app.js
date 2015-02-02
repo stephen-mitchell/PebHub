@@ -331,6 +331,16 @@ loadingCard.show();
 var githubAccessToken = Settings.option("githubAccessToken");
 console.log("Read GitHub Access Token " + githubAccessToken);
 
+// If the GitHub access token is undefined, display an error
+if (githubAccessToken === undefined)
+  {
+    var noTokenCard = new UI.Card({title:"No Access Token",
+                                   subtitle:"GitHub Access Token could not be read from settings. Please check the app settings on your phone and restart the app.",
+                                  });
+    loadingCard.hide();
+    noTokenCard.show();
+  }
+
 // Retrieve the user object for the owner of the access token
 var authenticatedUserUrl = 'https://api.github.com/user?access_token=' + githubAccessToken;
 var authenticated_user = get_json_data(authenticatedUserUrl);
@@ -362,4 +372,3 @@ else
     // Couldn't get user data. Show error
     display_error('Error retrieving authenticated user details', authenticated_user.error);
   }
-
