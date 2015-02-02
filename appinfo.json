@@ -4,7 +4,7 @@
         "configurable"
     ],
     "companyName": "Stephen Mitchell",
-    "longName": "PebbleHub Unofficial GitHub Client for Pebble",
+    "longName": "PebHub Unofficial GitHub Client for Pebble",
     "projectType": "pebblejs",
     "resources": {
         "media": [
@@ -36,10 +36,10 @@
             }
         ]
     },
-    "shortName": "PebbleHub",
+    "shortName": "PebHub",
     "uuid": "3bb62bc4-1bc1-427b-9c11-42a36ed9837d",
     "versionCode": 1,
-    "versionLabel": "0.1",
+    "versionLabel": "0.2",
     "watchapp": {
         "watchface": false
     }
